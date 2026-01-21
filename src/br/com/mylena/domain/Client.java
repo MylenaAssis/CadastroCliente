@@ -1,9 +1,8 @@
 package br.com.mylena.domain;
 
 import java.util.Objects;
-import java.util.logging.Logger;
 
-public class Client {
+public class Client implements Persisted {
     private String name;
     private Long cpf;
     private Long tel;

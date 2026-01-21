@@ -1,8 +1,8 @@
 package br.com.mylena;
 
+import br.com.mylena.dao.ClientMapDAO;
 import br.com.mylena.dao.IClientDAO;
 import br.com.mylena.domain.Client;
-import br.com.mylena.domain.ClientMapDAO;
 
 import javax.swing.*;
 
@@ -18,6 +18,10 @@ public class App {
                 "Menu",
                 JOptionPane.INFORMATION_MESSAGE
         );
+
+        if (option == null) {
+            exit();
+        }
 
         while (!isValidOption((option))) {
             if ("".equals(option)) {
@@ -52,9 +56,9 @@ public class App {
     }
 
     private static void Update(String data) {
-        String[] SplitData = data.split(",");
-        Client client = new Client(SplitData[0], SplitData[1], SplitData[2], SplitData[3], SplitData[4], SplitData[5], SplitData[6]);
-        iClientDAO.update(client);
+        String[] splitData = data.split(",");
+        Client newClient = new Client(splitData[0], splitData[1], splitData[2], splitData[3], splitData[4], splitData[5], splitData[6]);
+        iClientDAO.update(newClient);
     }
 
     private static void Delete(String cpf) {
