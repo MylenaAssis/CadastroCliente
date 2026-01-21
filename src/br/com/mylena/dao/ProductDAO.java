@@ -1,12 +1,14 @@
 package br.com.mylena.dao;
 
+import br.com.mylena.dao.generic.GenericDAO;
 import br.com.mylena.domain.Client;
+import br.com.mylena.domain.Persisted;
 import br.com.mylena.domain.Product;
 
 import java.util.Collection;
 import java.util.List;
 
-public class ProductDAO implements IProductDAO {
+public class ProductDAO extends GenericDAO<Product> implements IProductDAO {
 
     @Override
     public Boolean register(Product product) {
@@ -14,22 +16,20 @@ public class ProductDAO implements IProductDAO {
     }
 
     @Override
-    public void delete(Long code) {
-
+    public Class getClassType() {
+        return Product.class;
     }
 
     @Override
-    public void update(Product product) {
-
+    public Long getCode(Product product) {
+        return product.getCode();
     }
 
     @Override
-    public Client search(Long code) {
-        return null;
-    }
-
-    @Override
-    public Collection<Product> searchAll() {
-        return List.of();
+    public void updateData(Product product, Product newProduct) {
+        if (newProduct != null) {
+            product.setCode(newProduct.getCode());
+            product.setName(newProduct.getName());
+        }
     }
 }
